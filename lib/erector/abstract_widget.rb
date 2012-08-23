@@ -205,8 +205,8 @@ module Erector
 
       output.widgets << self.class
       send(options[:content_method_name] || :content)
-      script js, :type => "text/javascript"
-      script compile_coffeescript(coffee), :type => "text/javascript"
+      script raw(js), :type => "text/javascript"
+      script raw(compile_coffeescript(coffee)), :type => "text/javascript"
       output
     end
 
