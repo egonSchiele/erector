@@ -4,8 +4,6 @@ require 'erector/text'
 require 'erector/convenience'
 require 'erector/after_initialize'
 require 'erector/output'
-require 'rubygems'
-require 'coffee-script'
 
 module Erector
 
@@ -128,11 +126,6 @@ module Erector
       ""
     end
 
-    # inline coffeescript
-    def coffee
-      ""
-    end
-
     # When this method is executed, the default block that was passed in to
     # the widget's constructor will be executed. The semantics of this
     # block -- that is, what "self" is, and whether it has access to
@@ -206,12 +199,7 @@ module Erector
       output.widgets << self.class
       send(options[:content_method_name] || :content)
       script raw(js), :type => "text/javascript"
-      script raw(compile_coffeescript(coffee)), :type => "text/javascript"
       output
-    end
-
-    def compile_coffeescript str
-        CoffeeScript.compile str
     end
 
     # same as _emit, but using a parent widget's output stream and helpers
